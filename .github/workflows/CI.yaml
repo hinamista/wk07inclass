@@ -1,35 +1,34 @@
-name: CI Test for Calculator  
+name: CI Process
+run-name: ${{github.actor}} is learning Github Actions
+on: [push]
+jobs:
+  behave-testing:
+    # Setup of simple OS of choice
+    # Create VM with ubuntu OS
+    runs-on: ubuntu-latest
+    steps:
+    # Setup of environment for test
+      - name: Checkout
+        uses: actions/checkout@v4 
+      - name: List repo
+        run: |
+          ls
+          
+      # install python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13' 
 
-on:  
-  push:  
-    branches:  
-      - main  
-  pull_request:  
-    branches:  
-      - main  
+      # install behave
+      - name: Setup Behave
+        uses: BSFishy/pip-action@v1
+        with:
+          packages: |
+            behave
 
-jobs:  
-  test:  
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment  
-
-    steps:  
-      # Step 1: Checkout the repository  
-      - name: Checkout repository  
-        uses: actions/checkout@v3  
-
-      # Step 2: Setup Python environment  
-      - name: Setup Python  
-        uses: actions/setup-python@v4  
-        with:  
-          python-version: '3.9'  # Specify the Python version  
-
-      # Step 3: Install dependencies  
-      - name: Install dependencies  
-        run: |  
-          python -m pip install --upgrade pip  
-          pip install behave  # Install Behave  
-
-      # Step 4: Run Behave tests  
-      - name: Run Tests  
-        run: |  
-          mkdir -p test-results  # Ensure the directory exists
+      # Run behave
+      - name: Run behave test
+        uses: cryptic-wizard/run-behave-tests@v0.4.0
+        with:
+          test-output-name: results.xml
