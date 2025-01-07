@@ -69,7 +69,7 @@ jobs:
       - name: Prepare files
         run: |
           mkdir -p release
-          cp -r ./calculator.py ./release/calculator-HninThant.py
+          cp -r ./calculator.py ./release/calculator-ht.py
           echo "Deployment files prepared."
           ls -l ./release/
 
