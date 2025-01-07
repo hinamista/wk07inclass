@@ -65,6 +65,6 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          curl -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-          -d chat_id="${TELEGRAM_CHAT_ID}" \
+          curl -X POST "https://api.telegram.org/bot${8109281843:AAGUJw4sD04bojHZif0jYJXkY_rQPiocUV8}/sendMessage" \
+          -d chat_id="${-1002484656232}" \
           -d text="Review failed run, fix the issue(s), and re-run until successful."  
